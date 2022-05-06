@@ -1,0 +1,7 @@
+{
+  "name": "PlanA",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
