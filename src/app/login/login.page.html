@@ -5,5 +5,24 @@
 </ion-header>
 
 <ion-content>
+  <div class="divForm">
+    <form #loginForm="ngForm" (ngSubmit)="login(form)">
+      <ion-item lines="full">
+        <ion-label position="floating">Email</ion-label>
+        <ion-input type="text" ngModel name="email" required></ion-input>
+      </ion-item>
+      <ion-item lines="full">
+        <ion-label position="floating">Password</ion-label>
+        <ion-input type="password" ngModel name="password" required></ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" color="danger" [disabled]="loginForm.invalid" expand="block">Sign In</ion-button>
+          <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a>
+        </ion-col>
+      </ion-row>
+    </form>
+
+  </div>
 
 </ion-content>
