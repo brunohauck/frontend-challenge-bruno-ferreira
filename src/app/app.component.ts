@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { getCountries } from './store/actions/country.action';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -14,5 +16,10 @@ export class AppComponent {
     { title: 'Spam', url: '/folder/Spam', icon: 'warning' },
   ];
   public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
-  constructor() {}
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(getCountries());
+  }
+
 }

@@ -6,7 +6,7 @@
 
 <ion-content>
   <div class="divForm">
-    <form #loginForm="ngForm" (ngSubmit)="login(form)">
+    <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
       <ion-item lines="full">
         <ion-label position="floating">Email</ion-label>
         <ion-input type="text" ngModel name="email" required></ion-input>

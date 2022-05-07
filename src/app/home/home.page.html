@@ -5,5 +5,12 @@
 </ion-header>
 
 <ion-content>
+  <div *ngFor="let country of countries$ | async">
+
+      <h1> {{country.name}} </h1>
+      <h2> {{country.code }} </h2>
+  
+  </div>
+
 
 </ion-content>

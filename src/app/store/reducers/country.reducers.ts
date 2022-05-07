@@ -1,18 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
-import { Countries } from 'src/app/models/countries';
+import { Country } from 'src/app/models/countries';
 
 import {
   getCountriesSuccess,
 } from '../actions/country.action';
 
-export interface CountriesState {
-  countries: ReadonlyArray<Countries>;
+export interface CountryState {
+  countries: ReadonlyArray<Country>;
 }
 
-const initialState: ReadonlyArray<Countries> = [];
+const initialState: ReadonlyArray<Country> = [];
 
 export const countryReducer = createReducer(
   initialState,
-  on(getCountriesSuccess, (state, { countries }) => [...countries])
+  on(getCountriesSuccess, (state, { countries }) =>  [...countries] )
 
 );

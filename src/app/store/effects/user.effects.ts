@@ -5,21 +5,24 @@ import { catchError, concatMap, exhaustMap, map, tap } from 'rxjs/operators';
 import { CountryService } from 'src/app/service/country.service';
 
 import {
-  getCountries,
-  getCountriesSuccess,
-} from '../actions/country.action';
+  addUser,
+  addUserSuccess
+} from '../actions/user.action';
 
 @Injectable()
-export class CountriesEffects {
-  loadCountry$ = createEffect(() =>
-    this.action$.pipe(
-      ofType(getCountries),
-      exhaustMap(() =>
-        this.countryService.getCountries().pipe(
-          map((countries) => getCountriesSuccess(countries.countries))
-        )
+export class UserEffects {
+
+  addUser$ = createEffect(() =>
+  this.action$.pipe(
+    ofType(addUser),
+    tap((user) => console.log(user)),
+    concatMap(({ user }) =>
+      this.countryService.addUser(user).pipe(
+        map((newUser) => addUserSuccess(newUser))
       )
     )
-  );
+  )
+);
+
   constructor(private action$: Actions, private countryService: CountryService) {}
 }
