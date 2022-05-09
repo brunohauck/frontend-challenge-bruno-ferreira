@@ -24,8 +24,6 @@ export class HolidaysPage implements OnInit {
     this.holidays$ = this.store.select('holidays');
   }
 
-  onBack(): void {
-    this.router.navigate(['home']);
-  }
+ 
 
 }

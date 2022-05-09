@@ -16,8 +16,6 @@ const headers = new HttpHeaders()
 })
 export class HolidayService {
 
-  //private url = 'https://api.m3o.com/v1/holidays/List';
-  private url = 'https://startdev.net/json-server/holidays.json';
   constructor(private http: HttpClient) {
 
   }
@@ -27,7 +25,7 @@ export class HolidayService {
       country_code: code,
       year: '2022'
     }
-    return this.http.post<Holidays>(this.url, data, { 'headers': headers }).pipe(
+    return this.http.post<Holidays>(environment.url+'/holidays/List', data, { 'headers': headers }).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error(error);
         return throwError(error);

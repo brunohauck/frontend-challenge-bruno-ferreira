@@ -6,6 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { Countries, Country } from '../models/countries';
 import { HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
+import { environment } from 'src/environments/environment';
 
 const headers = new HttpHeaders()
 .set('content-type', 'application/json')
@@ -16,24 +17,11 @@ const headers = new HttpHeaders()
 })
 export class CountryService {
 
-  //private url = 'https://api.m3o.com/v1/holidays/Countries';
-  private url = 'https://startdev.net/json-server/db.json';
-  private url2 = 'https://startdev.net/json-server/user.json';
-  constructor(private http: HttpClient) {
-
-  }
+  constructor(private http: HttpClient) { }
 
   getCountries(): Observable<Countries> {
     console.log('get countries')
-    return this.http.get<Countries>(this.url, { 'headers': headers }).pipe(
-      catchError((error: HttpErrorResponse) => {
-        console.error(error);
-        return throwError(error);
-      })
-    );
-  }
-  addUser(user: User): Observable<User> {
-    return this.http.post<User>(this.url2, user).pipe(
+    return this.http.get<Countries>(environment.url+'/holidays/Countries', { 'headers': headers }).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error(error);
         return throwError(error);
