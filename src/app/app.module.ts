@@ -24,14 +24,14 @@ import { HolidaysEffects } from './store/effects/holiday.effects';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    
     HttpClientModule,
     StoreModule.forRoot({ countries: countryReducer , holidays: holidaysReducer, user: userReducer  }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false,
     }),
-    EffectsModule.forRoot([CountriesEffects, HolidaysEffects, UserEffects])],
+    EffectsModule.forRoot([CountriesEffects, HolidaysEffects, UserEffects])
+  ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

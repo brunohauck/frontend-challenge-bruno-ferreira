@@ -5,6 +5,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import {  Holidays } from '../models/holidays';
 import { HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 const headers = new HttpHeaders()
 .set('content-type', 'application/json')
@@ -20,8 +21,13 @@ export class HolidayService {
   constructor(private http: HttpClient) {
 
   }
-  getHolidays(): Observable<Holidays> {
-    return this.http.get<Holidays>(this.url, { 'headers': headers }).pipe(
+  getHolidays(code: string): Observable<Holidays> {
+   
+    let data = {
+      country_code: code,
+      year: '2022'
+    }
+    return this.http.post<Holidays>(this.url, data, { 'headers': headers }).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error(error);
         return throwError(error);

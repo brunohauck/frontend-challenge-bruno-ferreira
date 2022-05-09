@@ -17,11 +17,7 @@ export class HolidaysPage implements OnInit {
     private route: ActivatedRoute,
     private store: Store<HolidaysState>
     ) { 
-    this.route.queryParams.subscribe(params => {
-        this.countryCode = params['code'];
-        console.log(this.countryCode)
-    });  
-    this.store.dispatch(getHolidays());
+     this.store.dispatch(getHolidays(this.route.snapshot.paramMap.get('code'))); 
   }
 
   ngOnInit(): void {

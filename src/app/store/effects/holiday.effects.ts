@@ -15,10 +15,10 @@ export class HolidaysEffects {
   loadHoliday$ = createEffect(() =>
     this.action$.pipe(
       ofType(getHolidays),
-      exhaustMap(() =>
-        this.holidayService.getHolidays().pipe(
+      exhaustMap(({code}) =>
+        this.holidayService.getHolidays(code).pipe(
           map((holidays) => getHolidaysSuccess(holidays.holidays))
-        )
+        ) 
       )
     )
   );

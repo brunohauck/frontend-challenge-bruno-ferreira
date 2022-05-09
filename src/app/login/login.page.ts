@@ -1,9 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { User } from '../models/user';
 import { addUser } from '../store/actions/user.action';
 import { UserReturnState } from '../store/reducers/user.reducers';
+import {
+  FormGroup,
+  Validators,
+  FormBuilder
+} from "@angular/forms";
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -11,18 +16,37 @@ import { UserReturnState } from '../store/reducers/user.reducers';
 })
 export class LoginPage implements OnInit {
 
+  @Output() loggedIn = new EventEmitter<User>();
+  form: FormGroup;
   constructor(
+    private fb: FormBuilder,
     private router: Router,
     private store: Store<UserReturnState>
     ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      email: ['', [
+        Validators.required,
+        Validators.pattern("[^ @]*@[^ @]*")]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(8)]],
+    });
   }
 
-  async login(form){
-    let newUser: User = new User(form.value.email, form.value.password);
+  async login(){
+    let newUser: User = new User(  
+      this.form.value.email,
+      this.form.value.password);
+
+    this.loggedIn.emit(
+      new User(
+        this.form.value.email,
+        this.form.value.password
+      )
+    );  
     await this.store.dispatch(addUser(newUser));
-    let user$ = await this.store.select('userReturn');
     await this.store.select(state => state).subscribe( val => 
       { 
         for (const k in val) {
