@@ -7,9 +7,6 @@ import { HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
 import { UserReturn } from '../models/userReturn';
 
-const headers = new HttpHeaders()
-.set('content-type', 'application/json')
-.set('Authorization', 'Bearer ZjU4NTY4NmYtMWVhYS00MmIzLTgzNWItNzcxOTZjYTI0OTE5');
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +17,7 @@ export class UserService {
   }
 
   addUser(user: User): Observable<UserReturn> {
-    return this.http.post<UserReturn>(this.url, user, { 'headers': headers }).pipe(
+    return this.http.post<UserReturn>(this.url, user).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error(error);
         return throwError(error);

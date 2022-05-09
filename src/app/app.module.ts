@@ -16,6 +16,7 @@ import { UserEffects } from './store/effects/user.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { holidaysReducer } from './store/reducers/holiday.reducers';
 import { HolidaysEffects } from './store/effects/holiday.effects';
+import { InterceptorModule } from './interceptors/interceptor.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { HolidaysEffects } from './store/effects/holiday.effects';
     IonicModule.forRoot(), 
     AppRoutingModule,
     HttpClientModule,
+    InterceptorModule,
     StoreModule.forRoot({ countries: countryReducer , holidays: holidaysReducer, user: userReducer  }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,

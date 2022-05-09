@@ -14,5 +14,4 @@ let initialState: UserReturn;
 export const userReducer = createReducer(
   initialState,
   on(addUserReturnSuccess, (state, { userReturn }) =>  userReturn)
-
 );
