@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { User } from '../models/user';
 import { addUser } from '../store/actions/user.action';
-import { UserState } from '../store/reducers/user.reducers';
+import { UserReturnState } from '../store/reducers/user.reducers';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -11,17 +11,23 @@ import { UserState } from '../store/reducers/user.reducers';
 export class LoginPage implements OnInit {
 
   
-  constructor(private store: Store<UserState>) { }
+  constructor(private store: Store<UserReturnState>) { }
 
   ngOnInit() {
   }
 
   async login(form){
-    console.log('entrou 01');
     let newUser: User = new User(form.value.email, form.value.password);
-    console.log(newUser)
     await this.store.dispatch(addUser(newUser));
-    let user$ = this.store.select('user');
-    console.log(user$)
+    let user$ = this.store.select('userReturn');
+    
+    this.store.select(state => state).subscribe( val => 
+      { 
+        let attributes = Object.keys(val)
+        console.log(attributes)
+        for (const k in val) {
+          console.log(val[k]);
+        }
+      });
   }
 }

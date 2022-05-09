@@ -3,10 +3,11 @@ import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { EmptyError } from 'rxjs';
 import { catchError, concatMap, exhaustMap, map, tap } from 'rxjs/operators';
 import { CountryService } from 'src/app/service/country.service';
+import { UserService } from 'src/app/service/user.service';
 
 import {
   addUser,
-  addUserSuccess
+  addUserReturnSuccess
 } from '../actions/user.action';
 
 @Injectable()
@@ -15,14 +16,14 @@ export class UserEffects {
   addUser$ = createEffect(() =>
   this.action$.pipe(
     ofType(addUser),
-    tap((user) => console.log(user)),
+    tap((user) => console.log('login user')),
     concatMap(({ user }) =>
-      this.countryService.addUser(user).pipe(
-        map((newUser) => addUserSuccess(newUser))
+      this.userService.addUser(user).pipe(
+        map((newUser) => addUserReturnSuccess(newUser))
       )
     )
   )
 );
 
-  constructor(private action$: Actions, private countryService: CountryService) {}
+  constructor(private action$: Actions, private userService: UserService) {}
 }

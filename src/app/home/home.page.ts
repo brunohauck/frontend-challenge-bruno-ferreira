@@ -28,7 +28,7 @@ export class HomePage implements OnInit {
         let attributes = Object.keys(val)
         console.log(attributes)
         for (const k in val) {
-          if(k.length === 9)
+        
           this.countries = val[k];
           
           console.log(value)

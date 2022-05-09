@@ -6,10 +6,16 @@
 
 <ion-content>
   <section *ngFor="let country of countries$ | async">
-
-    <h1 (click)="navigateToHolidays(country)"> {{country.name}} </h1>
-    <h2> {{country.code }} </h2>
+    <ion-card (click)="navigateToHolidays(country)">
+      <ion-card-header>
+        <ion-card-subtitle>{{country.name}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        {{country.code }}
+      </ion-card-content>
+    </ion-card>
   </section>
+
 
 
 </ion-content>

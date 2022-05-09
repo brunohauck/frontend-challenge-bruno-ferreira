@@ -1,20 +1,18 @@
 import { createReducer, on } from '@ngrx/store';
-
-import { Holidays } from 'src/app/models/holidays';
-import { User } from 'src/app/models/user';
+import { UserReturn } from 'src/app/models/userReturn';
 
 import {
-  addUserSuccess,
+  addUserReturnSuccess,
 } from '../actions/user.action';
 
-export interface UserState {
-  user: ReadonlyArray<User>;
+export interface UserReturnState {
+  userReturn: Readonly<UserReturn>;
 }
 
-const initialState: ReadonlyArray<User> = [];
+let initialState: UserReturn;
 
 export const userReducer = createReducer(
   initialState,
-  on(addUserSuccess, (state, { user }) => [...state, user])
+  on(addUserReturnSuccess, (state, { userReturn }) =>  userReturn)
 
 );

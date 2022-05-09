@@ -9,8 +9,15 @@
 
 <ion-content>
   <section *ngFor="let holiday of holidays$ | async">
-    <h1> {{holiday.name}} </h1>
-    <h2> {{holiday.local_name }} </h2>
+    <ion-card (click)="navigateToHolidays(country)">
+      <ion-card-header>
+        <ion-card-subtitle>{{holiday.name}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+       <p>{{holiday.code }}</p> 
+       <p>{{holiday.date }}</p> 
+      </ion-card-content>
+    </ion-card>
   </section>
 
 </ion-content>
