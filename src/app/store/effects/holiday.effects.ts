@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 import { EmptyError } from 'rxjs';
-import { catchError, concatMap, exhaustMap, map, tap } from 'rxjs/operators';
+import { exhaustMap, map, tap } from 'rxjs/operators';
 import { CountryService } from 'src/app/service/country.service';
 import { HolidayService } from 'src/app/service/holidays.service';
 
@@ -17,7 +17,7 @@ export class HolidaysEffects {
       ofType(getHolidays),
       exhaustMap(() =>
         this.holidayService.getHolidays().pipe(
-          map((holidays) => getHolidaysSuccess(holidays))
+          map((holidays) => getHolidaysSuccess(holidays.holidays))
         )
       )
     )

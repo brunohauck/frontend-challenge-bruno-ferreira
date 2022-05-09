@@ -7,7 +7,7 @@ import {
 } from '../actions/holiday.action';
 
 export interface HolidaysState {
-  countries: ReadonlyArray<Holidays>;
+  holidays: ReadonlyArray<Holidays>;
 }
 
 const initialState: ReadonlyArray<Holidays> = [];

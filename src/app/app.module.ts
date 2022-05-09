@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { userReducer } from './store/reducers/user.reducers';
 import { UserEffects } from './store/effects/user.effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { holidaysReducer } from './store/reducers/holiday.reducers';
+import { HolidaysEffects } from './store/effects/holiday.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,13 +24,14 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
-    StoreModule.forRoot({ contries: countryReducer , user: userReducer  }),
+    
     HttpClientModule,
+    StoreModule.forRoot({ countries: countryReducer , holidays: holidaysReducer, user: userReducer  }),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false,
     }),
-    EffectsModule.forRoot([CountriesEffects, UserEffects])],
+    EffectsModule.forRoot([CountriesEffects, HolidaysEffects, UserEffects])],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })

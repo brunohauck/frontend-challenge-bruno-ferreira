@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 
 import { catchError, map } from 'rxjs/operators';
-import { Countries } from '../models/countries';
+import { Countries, Country } from '../models/countries';
 import { HttpHeaders } from '@angular/common/http';
 import { User } from '../models/user';
 
@@ -18,11 +18,21 @@ export class CountryService {
 
   //private url = 'https://api.m3o.com/v1/holidays/Countries';
   private url = 'https://startdev.net/json-server/db.json';
+  //private url = 'http://localhost:3000/countries';
   private url2 = 'https://startdev.net/json-server/user.json';
   constructor(private http: HttpClient) {
 
   }
-  getCountries(): Observable<Countries>{
+  /*
+  getCountries(): Observable<ReadonlyArray<Country>> {
+    return this.http.get<ReadonlyArray<Country>>(this.url, { 'headers': headers }).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.error(error);
+        return throwError(error);
+      })
+    );
+  }*/
+  getCountries(): Observable<Countries> {
     return this.http.get<Countries>(this.url, { 'headers': headers }).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error(error);

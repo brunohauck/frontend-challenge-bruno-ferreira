@@ -15,12 +15,13 @@ const headers = new HttpHeaders()
 })
 export class HolidayService {
 
-  private url = 'https://api.m3o.com/v1/holidays/List';
+  //private url = 'https://api.m3o.com/v1/holidays/List';
+  private url = 'https://startdev.net/json-server/holidays.json';
   constructor(private http: HttpClient) {
 
   }
-  getHolidays(): Observable<ReadonlyArray<Holidays>> {
-    return this.http.get<ReadonlyArray<Holidays>>(this.url, { 'headers': headers }).pipe(
+  getHolidays(): Observable<Holidays> {
+    return this.http.get<Holidays>(this.url, { 'headers': headers }).pipe(
       catchError((error: HttpErrorResponse) => {
         console.error(error);
         return throwError(error);

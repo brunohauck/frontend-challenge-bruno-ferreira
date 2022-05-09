@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
-    path: 'holidays',
+    path: 'holidays/:code',
     loadChildren: () => import('./holidays/holidays.module').then( m => m.HolidaysPageModule)
   }
 ];

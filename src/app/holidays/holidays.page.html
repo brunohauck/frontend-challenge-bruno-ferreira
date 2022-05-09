@@ -1,9 +1,16 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home"></ion-back-button>
+    </ion-buttons>
     <ion-title>holidays</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <section *ngFor="let holiday of holidays$ | async">
+    <h1> {{holiday.name}} </h1>
+    <h2> {{holiday.local_name }} </h2>
+  </section>
 
 </ion-content>
